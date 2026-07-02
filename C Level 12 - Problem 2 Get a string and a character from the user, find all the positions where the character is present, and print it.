@@ -1,0 +1,31 @@
+/*C Level 12 - Problem 2
+Get a string and a character from the user,
+find all the positions where the character is present, and print it.
+Example:
+string: helloetalvislearning
+character: e
+Answer: 2,6,14 */
+#include <stdio.h>
+int finding_no_of_letters(char n1[],char letter,char *n2);
+
+int main() {
+    char n1[10],letter,n2[5];
+    printf("Enter a string:");
+    scanf("%s",n1);
+    printf("Enter a letter:");
+    scanf("\n%c",&letter);
+    finding_no_of_letters(n1,letter,n2);
+    printf("%s",n2);
+    return 0;
+}
+
+int finding_no_of_letters(char n1[],char letter,char *n2){
+     int i,y=0;
+      for(i=0;n1[i]!=0;i++){
+         if(n1[i]==letter){
+             n2[y]=i+48;
+             y++;
+         }
+      }
+      n2[y]='\0';
+}
