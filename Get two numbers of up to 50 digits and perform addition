@@ -1,0 +1,87 @@
+/*C Level 12 — Problem 1
+
+Question:
+
+Get two numbers of up to 50 digits and perform addition, then print the result.
+getnumbers(number1, number2);
+addnumbers(number1, number2, result);
+print(result);
+*/
+#include <stdio.h>
+void getnumbers(char n1[],char n2[]);
+void addnumbers(char *n1,char *n2,char *result);
+
+int main() {
+    char n1[50],n2[50],result[51];
+    getnumbers(n1,n2);
+    addnumbers(n1,n2,result);
+    printf("%s",result);
+    return 0;
+}
+
+void getnumbers(char n1[],char n2[]){
+    printf("Enter number 1:");
+    scanf("%s",n1);
+    printf("Enter number 2:");
+    scanf("%s",n2);
+}
+void addnumbers(char *n1,char *n2,char *result){
+   int i,count1=0,count2=0,count,diff,carry=0,x;
+   //count
+   for(i=0;i<50;i++){
+       if(n1[i]==0){
+           count1=i;
+           break;
+       }
+   }
+   for(i=0;i<50;i++){
+       if(n2[i]==0){
+           count2=i;
+           break;
+       }
+   }
+   //normalizing size
+   if(count1>count2){
+       count=count1;
+       diff=count1-count2;
+       for(i=count2-1;i>=0;i--){
+           n2[count1-1]=n2[i];
+           count1--;
+       }
+       for(i=0;i<diff;i++){
+           n2[i]='0';
+       }
+       n2[count]='\0';
+   }
+  else{
+       count=count2;
+       diff=count2-count1;
+       for(i=count1-1;i>=0;i--){
+           n1[count2-1]=n1[i];
+           count2--;
+       }
+       for(i=0;i<diff;i++){
+           n1[i]='0';
+       }
+       n1[count]='\0';
+  }
+  //count
+  for(i=count-1;i>=0;i--){
+      x=n1[i]+n2[i]+carry-96;
+      if(x>9){
+          carry=x/10;
+          result[i]=(x%10)+48;
+      }
+      else{
+          carry=0;
+          result[i]=x+48;
+      }
+  }
+  result[count]='\0';
+if(carry>0){
+    for(i=count;i>=0;i--){
+        result[i+1]=result[i];
+    }
+    result[0]=carry+48;
+}
+}
