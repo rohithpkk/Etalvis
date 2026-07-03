@@ -1,0 +1,47 @@
+/*C Level 12 - Problem 3
+Get a main string and substring. Check the
+sub-string in the main string and print
+the position.
+Example:
+string: helloetalvislearning
+sub-string: etal
+Answer: 6 */
+
+#include <stdio.h>
+int finding_where_substring_starts(char n1[],char *ss);
+
+int main() {
+    char n1[20],ss[20];
+    printf("Enter a string:");
+    scanf("%s",n1);
+    printf("Enter a substring:");
+    scanf("\n%s",ss);
+    printf("%d",finding_where_substring_starts(n1,ss));
+    return 0;
+}
+
+int finding_where_substring_starts(char n1[],char *ss){
+     int i,y,start,count=0,z,b,s;
+     for(i=0;ss[i]!='\0';i++){
+          count++;
+     }
+     i=0;
+      for(i;n1[i]!=0;i++){
+        y=0,b=0;
+         if(n1[i]==ss[y]){
+             start=i;
+             s=i+1;
+             z=start+count;
+             for(start;start<z;start++){
+                    if(n1[start]==ss[y]){
+                       b++;
+                       y++;
+                       if(count==b){
+                        return s;
+                       }
+                    }
+             }
+             i=i+1;
+         }
+      }
+    }
