@@ -1,0 +1,29 @@
+/*
+C Level 12 - Problem 4
+Get a string using gets function and count all the words in it.
+Example:
+string: Welcome to Etalvis Learning
+Answer : 4
+*/
+#include <stdio.h>
+
+int main() {
+  int i,count=0,d,e;
+    char n[20];
+    printf("Enter a string:");
+    fgets(n, sizeof(n), stdin);
+    for(i=0;n[i]!='\n';i++){
+      d=n[i+1];
+      e=n[i];
+      if(e>=48 && e<=122){        // allowed 48-67, 65-91, 96-122
+          if(e<91 || e>96 || e<58){
+              if(d==32 || d==10){  // 32 is space, 10 is newline
+        count++;
+              }
+          }
+      }
+    }
+    printf("%d",count);
+    return 0;
+    
+}
